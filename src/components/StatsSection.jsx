@@ -1,9 +1,11 @@
+"use client";
 import {
     Briefcase,
     Factory,
     PersonMagnifier,
     Star,
 } from "@gravity-ui/icons";
+import { motion } from "motion/react"
 
 const stats = [
     {
@@ -47,11 +49,16 @@ export default function StatsSection() {
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Heading */}
-                <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight max-w-3xl mx-auto mb-10 lg:mb-16">
+                <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight max-w-3xl mx-auto mb-10 lg:mb-16"
+                >
                     Assisting over 15,000 job seekers
                     <br className="hidden sm:block" />
                     find their dream positions.
-                </h2>
+                </motion.h2>
 
                 {/* Stats Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8">

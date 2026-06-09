@@ -2,9 +2,18 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { signOut, useSession } from "@/lib/auth-client";
+import { Button } from "@heroui/react";
 
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { data: session, isPending } = useSession();
+    // console.log("Session data in Navbar:", session, "Is pending:", isPending);
+    const user = session?.user;
+
+    const handleSignOut = async () => {
+        await signOut();
+    }
 
     const navItems = [
         {
@@ -83,16 +92,37 @@ function Navbar() {
                     {/* Auth actions */}
                     <div className="flex items-center gap-5">
 
-                        <Link
-                            href="/signIn"
-                            className="
-                            text-violet-400
-                            hover:text-violet-300
-                            transition
+                        {user ?
+                            <>
+                            Hi , {user.name}
+                                <Button onClick={handleSignOut} variant="ghost" color="primary" className="text-sm">
+                                    Sign Out
+                                </Button>
+                            </>
+                            :
+                            <Link
+                                href="/signIn"
+                                className="
+                                text-violet-400
+                                hover:text-violet-300
+                                transition
                             "
-                        >
-                            Sign In
-                        </Link>
+                            >
+                                Sign In
+                            </Link>}
+
+                        {user && (
+                            <Link
+                                href="/signOut"
+                                className="
+                                text-violet-400
+                                hover:text-violet-300
+                                transition
+                            "
+                            >
+                                Sign Out
+                            </Link>
+                        )}
 
                         <Link
                             href="/signUp"

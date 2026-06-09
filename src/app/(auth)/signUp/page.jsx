@@ -115,7 +115,7 @@ const SignUpPage = () => {
                     {/* সাইন ইন পেজের লিংক */}
                     <div className="flex justify-center items-center mt-5 gap-1.5 text-sm">
                         <span className="text-default-500">Already have an account?</span>
-                        <Link href="/signin" className="text-primary hover:underline font-medium">
+                        <Link href="/signIn" className="text-primary hover:underline font-medium">
                             Log In
                         </Link>
                     </div>
