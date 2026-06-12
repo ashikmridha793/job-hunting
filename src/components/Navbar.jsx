@@ -8,7 +8,7 @@ import { Button } from "@heroui/react";
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { data: session, isPending } = useSession();
-    // console.log("Session data in Navbar:", session, "Is pending:", isPending);
+    console.log("Session data in Navbar:", session, "Is pending:", isPending);
     const user = session?.user;
 
     const handleSignOut = async () => {
@@ -94,8 +94,11 @@ function Navbar() {
 
                         {user ?
                             <>
-                            Hi , {user.name}
-                                <Button onClick={handleSignOut} variant="ghost" color="primary" className="text-sm">
+                                Hi , {user.name}
+                                <Button onClick={handleSignOut} variant="ghost" color="primary"
+                                    className=" text-sm  
+                                                text-violet-400
+                                                hover:text-violet-300">
                                     Sign Out
                                 </Button>
                             </>
@@ -110,19 +113,6 @@ function Navbar() {
                             >
                                 Sign In
                             </Link>}
-
-                        {user && (
-                            <Link
-                                href="/signOut"
-                                className="
-                                text-violet-400
-                                hover:text-violet-300
-                                transition
-                            "
-                            >
-                                Sign Out
-                            </Link>
-                        )}
 
                         <Link
                             href="/signUp"

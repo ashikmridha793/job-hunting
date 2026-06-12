@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import { At, Lock, Person } from "@gravity-ui/icons";
-import { Button, Card, CardHeader } from "@heroui/react";
+import { Button, Card, CardHeader, Description, Label, Radio, RadioGroup } from "@heroui/react";
+
 import { signUp } from "@/lib/auth-client";
 
 const SignUpPage = () => {
@@ -12,6 +13,7 @@ const SignUpPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [role, setRole] = useState("seeker")
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -28,7 +30,8 @@ const SignUpPage = () => {
                 email,
                 password,
                 name,
-                callbackURL: "/dashboard",
+                role,
+                callbackURL: "/",
             });
 
             if (error) {
@@ -51,6 +54,8 @@ const SignUpPage = () => {
                     <h1 className="text-2xl font-bold tracking-tight text-foreground">Create a new account</h1>
                     <p className="text-small text-default-500">Enter your information to get started.</p>
                 </CardHeader>
+
+
 
                 <div className="pb-6">
                     <form onSubmit={handleSignUp} className="flex flex-col gap-4">
@@ -100,12 +105,35 @@ const SignUpPage = () => {
                             </div>
                         </div>
 
+                        {/* Role selection */}
+                        <div className="flex flex-col gap-4">
+                            <Label>Your Role</Label>
+                            <RadioGroup defaultValue="seeker" name="role" onChange={value => setRole(value)} orientation="horizontal" >
+                                <Radio value="seeker">
+                                    <Radio.Control>
+                                        <Radio.Indicator />
+                                    </Radio.Control>
+                                    <Radio.Content>
+                                        <Label>Job Seeker</Label>
+                                    </Radio.Content>
+                                </Radio>
+                                <Radio value="recruiter">
+                                    <Radio.Control>
+                                        <Radio.Indicator />
+                                    </Radio.Control>
+                                    <Radio.Content>
+                                        <Label>Recruiter</Label>
+                                    </Radio.Content>
+                                </Radio>
+                            </RadioGroup>
+                        </div>
+
                         {/* সাবমিট বাটন */}
                         <Button
                             type="submit"
                             color="primary"
                             variant="solid"
-                            className="w-full mt-4 font-medium"
+                            className="w-full mt-4 font-medium bg-blue-800 "
                             isLoading={isLoading}
                         >
                             {isLoading ? "Creating account..." : "Sign Up"}

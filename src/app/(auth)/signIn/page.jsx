@@ -88,7 +88,7 @@ const SignInPage = () => {
                             type="submit"
                             color="primary"
                             variant="solid"
-                            className="w-full mt-4 font-medium"
+                            className="w-full mt-4 font-medium bg-blue-800 "
                             isLoading={isLoading}
                         >
                             {isLoading ? "Signing in..." : "Sign In"}
